@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.shurey.com/js/craft/ktimer/ktimer.html -->
+<!-- <html><head><meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<html><head><meta name="viewport" content="width=300" >
+
+<title>飛行ロボコンタイマー</title>
+</head>
+
+<body>
+<h3>飛行ロボコンタイマー</h3>
+<hr>
+<form name="ktimer" onsubmit="return false;">
+    <font size="7"><B id="counter">180</B></font><font size="5">sec</font>
+    <input type="button" id="b_start" size="10" value="スタート" onclick="count_start()">
+    <input type="button" id="b_stop" size="10" value="ストップ" onclick="count_stop()">
+    <hr size="10" color="#0000ff" noshade>
+<hr>
+</form>
+
+<form name="myform">
+    <table border=1 cellpadding=4>
+        <tbody>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="300" onClick="calc_total()">離陸(300)</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" value="800" onClick="calc_total()">チキラー投下2<br>　　　(800)</td>
+                <td><input type="checkbox" value="400" onClick="calc_total()">チキラー投下1<br>　　　(400)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="500" onClick="calc_total()">ロッキングウィング(500)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="700" onClick="calc_total()">大型物資運搬(700)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="200" onClick="calc_total()">自動離陸(200)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="400" onClick="calc_total()">8の字(400)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="200" onClick="calc_total()">帰還(200)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="checkbox" value="0" onClick="calc_total()" checked="unchecked">合計得点：
+                    <input type="text" name="goukei"></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<form name="order" onsubmit="return false;">
+    <hr size="10" color="#0000ff" noshade>
+    <font size="5"><p id="comment">指示</p></font>
+    </form>
+
+<script type="text/javascript">
+//初期設定
+def_count = 180;
+
+timer_reset();
+
+function timer_reset() {
+	//タイマーの初期化
+    timerID = 0;
+    commentID=0;
+	document.ktimer.counter.value = def_count;
+	document.ktimer.b_start.disabled = false;
+}
+function set_timer(num) {//規定時間の設定
+	if (timerID > 0) {
+		count_stop();
+	}
+	document.ktimer.counter.value = num;
+	count_start();
+}
+function count_start() {
+	//カウント開始
+    count =def_count;   // カウンタのリセット
+    timerID  = setInterval('countdown()',1000);   // タイマーをセット(1000ms間隔)
+    document.getElementById("b_start" ).disabled = true;   // 開始ボタンの無効化
+    commentID = setInterval('order_comment()',1000);
+    calcID = setInterval('calc_total()',1000);
+}
+function count_stop() {
+	//カウント停止
+	clearInterval(timerID );
+    document.getElementById("b_stop" ).disabled =true;   // 開始ボタンの無効化
+	//timer_reset();
+}
+function count_format(num) {//カウント表示の書式設定
+	var tm,ts;
+	ts = num ; 
+	return ts;
+}
+function countdown() {//カウント表示
+    count--;
+   document.getElementById("counter").innerHTML = count_format(count);   // 表示更新 
+	if (count == -60) {
+	count_stop();
+	}
+}
+var PassSec;   // 秒数カウント用変数
+ 
+
+function order_comment(){
+    if (count == 179) {
+    var msg_order ="落ち着いて操縦してください";document.getElementById("comment").innerHTML= msg_order;
+    }else if(count == 160){
+    var msg_order ="正解の箱見つけれた？";document.getElementById("comment").innerHTML= msg_order;
+    
+	}else if(count == 140){
+    var msg_order ="チキラー投下できた？";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 130){
+    var msg_order ="そろそろできたんちゃうん？";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 110){
+    var msg_order ="今のチキラーをエリアに落とし次のステップへ";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 100){
+    var msg_order ="ロッキングウィングは絶対やろう";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 80){
+    var msg_order ="高所物資運搬";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 60){
+    var msg_order ="高所物資運搬なう？";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 30){
+    var msg_order ="そろそろ自動離陸やろ？";document.getElementById("comment").innerHTML= msg_order;
+	}else if(count == 0){
+    var msg_order ="時間超過　自動離陸後直ちに帰還せよ";document.getElementById("comment").innerHTML= msg_order;
+    document.getElementById("counter").style.color ="red"
+	}else if(count == -20){
+    var msg_order ="8の字禁止　即刻帰還";               document.getElementById("comment").innerHTML= msg_order;    
+	}else if(count == -50){
+    var msg_order ="last 10s 直ちに帰還せよ";           document.getElementById("comment").innerHTML= msg_order;  
+    document.getElementById("counter").style.color ="black"
+    document.ktimer.style.backgroundColor="red"; 
+	}else if(count == -60){
+    var msg_order ="Fale";                             document.getElementById("comment").innerHTML= msg_order;    
+	}
+}
+
+function calc_total(){
+    kingaku = 0;
+    time_point=0;
+    for (i=0; i<document.myform.length-1; i++){
+        // if(document.getElementById("counter").innerHTML*5>300){
+        //     time_point = 300;
+        //     kingaku=time_point;
+        // }else{
+        //     time_point= (document.getElementById("counter").innerHTML*5);
+        //    // kingaku=time_point;
+        // }
+            if (document.myform.elements[i].checked){
+                time_point= (document.getElementById("counter").innerHTML*5);
+                kingaku += eval(document.myform.elements[i].value);
+                if(time_point>300){
+                    time_point=300;
+                }
+                
+            }
+    }
+    document.myform.goukei.value = kingaku + time_point + "点";
+  }
+</script>
+<!--produced by www.shurey.com-->
+
+
+</body></html>
