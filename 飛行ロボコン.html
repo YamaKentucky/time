@@ -79,6 +79,7 @@ function countdown() {//カウント表示
             <tr>
                 <td colspan="2"><input type="checkbox" value="v_tkof" id="tkof" onClick="calc_total()">
                     <label for="tkof">離陸(300)</label></td>
+                    
             </tr>
             <tr>
                 <td><input type="checkbox" value="v_tiki2"id="tiki2" onClick="calc_total()">
@@ -125,7 +126,9 @@ function countdown() {//カウント表示
             </tr>
         </tbody>
     </table>
-     <input type="button" value="clear" onclick="clickBtn()"/>
+    <tr>
+     <div id="output"></div>
+    </tr>
 </form>
 
 <!-- blue line --><hr size="10" color="#0000ff" noshade>  
@@ -261,9 +264,7 @@ function onButtonClick() {//状態表示
   }
 </script>
 
-<div id="output"></div>
-<form name="order" onsubmit="return false;">
-    <font size="5"><p id="comment">指示</p></font>
+
 <script type="text/javascript">//初期設定
 function order_comment(){//指示表示
 if(Status==-1){//離陸未完了
@@ -274,7 +275,7 @@ if(Status==-1){//離陸未完了
                 var msg_order ="もう終わりや";document.getElementById("comment").innerHTML= msg_order;
             }
 }else if(Status==1){//チキラ未完了
-        if (count < 170&&count > 160) {
+        if (count < 180&&count > 160) {
         var msg_order ="離陸早くね？その調子でチキラ";document.getElementById("comment").innerHTML= msg_order;
         }else if(count < 160&&count > 130){
         var msg_order ="調子どう？";document.getElementById("comment").innerHTML= msg_order;
@@ -283,36 +284,28 @@ if(Status==-1){//離陸未完了
         }else if(count < 5&&count > 0){
         var msg_order ="もう終わりや";document.getElementById("comment").innerHTML= msg_order;
         }
-}else if(Status==2){//チキラ2完了チキラ1未完了
-    if (count < 170&&count > 130) {
-        var msg_order ="チキラもう一個いっとく？";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 100){
-        var msg_order ="もうやらなくていいよ，ロッキングウィングいこ";document.getElementById("comment").innerHTML= msg_order;
-        }
-}else if(Status==3){//チキラ1完了
-        
-    }else if(Status==3){
-        if (count < 170&&count > 80) {
+}else if(Status==2){//チキラ完了,ロッキングウィング完未完了
+    if (count < 180&&count > 80) {
         var msg_order ="ロッキングウィングはさらっといこ";document.getElementById("comment").innerHTML= msg_order;
         }else if(count < 75){
         var msg_order ="ZAQ運ぼか";document.getElementById("comment").innerHTML= msg_order;
         }
-}else if(Status==4){//ロッキングウィング完了
-        if (count < 80&&count > 60) {
+}else if(Status==4){//ロッキングウィング完了,ZAQ未完
+        if (count < 180&&count > 60) {
         var msg_order ="ZAQ運んでる？";document.getElementById("comment").innerHTML= msg_order;
         }else if(count < 50&&count > 30){
         var msg_order ="ちょっと急ごう";document.getElementById("comment").innerHTML= msg_order;
         }
-}else if(Status==5){//ZAQ完了
-        if (count < 40&&count > 30) {
+}else if(Status==5){//ZAQ完了,自動離陸未完了
+        if (count <180&&count > 30) {
         var msg_order ="自動離陸やってる？";document.getElementById("comment").innerHTML= msg_order;
         }else if(count < 30&&count > 0){
         var msg_order ="八の字時間ないかも";document.getElementById("comment").innerHTML= msg_order;
         }else if(count < 0&&count > -20){
         var msg_order ="自動離陸後即帰還，そっちの方が点数高い";document.getElementById("comment").innerHTML= msg_order;
         }    
-}else if(Status==6){//自動離陸完了
-        if (count < 40&&count > 30) {
+}else if(Status==6){//自動離陸完了，八の字未完了
+        if (count < 180&&count > 30) {
         var msg_order ="八の字頑張って";document.getElementById("comment").innerHTML= msg_order;
         }else if(count < 30&&count > 0){
         var msg_order ="八の字いそいで";document.getElementById("comment").innerHTML= msg_order;
@@ -322,7 +315,7 @@ if(Status==-1){//離陸未完了
 }else if(Status==7){//八の字完了
         var msg_order ="後は帰還するだけ";document.getElementById("comment").innerHTML= msg_order;
         }  
-else if(Status==8||Status==9){//帰還完了
+else if(Status==8){//帰還完了
         var msg_order ="お疲れ様．得点は"+document.myform.goukei.value +"でした";document.getElementById("comment").innerHTML= msg_order;
         document.getElementById("put").innerHTML= time_tkof+"aa";//+"a"+time_tiki;
         // var timelog=time_tkof1+"a"+time_tiki;
@@ -341,7 +334,8 @@ function design(){
         }
 }
 </script>
-
+<form name="order" onsubmit="return false;">
+    <font size="5"><p id="comment">指示</p></font>
 <div id="op_tkof" ></div>
 <div id="op_tiki" ></div>
 <div id="op_rock" ></div>
