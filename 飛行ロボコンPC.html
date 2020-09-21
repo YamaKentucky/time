@@ -65,6 +65,7 @@ function count_format(num) {//カウント表示の書式設定
 function countdown() {//カウント表示
     count--;
    document.getElementById("counter").innerHTML = count_format(count);   // 表示更新 
+   document.getElementById("counter_big").innerHTML = count_format(count);   // 表示更新 
 	if (count == -60) {
 	count_stop();
 	}
@@ -74,7 +75,7 @@ function countdown() {//カウント表示
 
 <!-- ////////////////////////////////////////////point form/////////////////////////////////////////////////// -->
 <form name="myform">
-    <table border=1 cellpadding=4>
+    <table align = "left" border=1 cellpadding=4>
         <tbody>
             <tr>
                 <td colspan="2"><input type="checkbox" value="v_tkof" id="tkof" onClick="calc_total()">
@@ -125,7 +126,10 @@ function countdown() {//カウント表示
                     <input type="text" name="goukei"></td>
             </tr>
         </tbody>
-    </table>
+    </table><div style="font-size: 1000%;"><B id="counter_big">180</B></div>
+    <font size="5">sec</font>
+    
+    <br clear='all'>
     <tr>
      <div id="output"></div>
     </tr>
