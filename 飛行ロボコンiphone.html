@@ -74,7 +74,7 @@ function countdown() {//カウント表示
 
 <!-- ////////////////////////////////////////////point form/////////////////////////////////////////////////// -->
 <form name="myform">
-    <table border=1 cellpadding=4>
+    <table align = "left" border=1 cellpadding=4>
         <tbody>
             <tr>
                 <td colspan="2"><input type="checkbox" value="v_tkof" id="tkof" onClick="calc_total()">
@@ -88,6 +88,12 @@ function countdown() {//カウント表示
                     <label for="tiki1">チキラー投下1<br>　　　(600)</label></td>
                 <td><input type="checkbox" value="v_fale_tiki1"id="fale_tiki" onClick="calc_total()">
                     <label for="fale_tiki">失敗<br></label></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="checkbox" value="v_tiki_re"id="tiki_re" onClick="calc_total()">
+                    <label for="tiki_re">チキラお代わり(200)</label></td>
+                    <td><input type="checkbox" value="v_fale_tiki_re"id="fale_tiki_re" onClick="calc_total()">
+                        <label for="fale_tiki_re">失敗</label></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="checkbox" value="v_rock"id="rock" onClick="calc_total()">
@@ -125,7 +131,8 @@ function countdown() {//カウント表示
                     <input type="text" name="goukei"></td>
             </tr>
         </tbody>
-    </table>
+    </table><!--<br><br>・・・1回目<br><br>・・・2回目-->
+    <br clear='all'>
     <tr>
      <div id="output"></div>
     </tr>
@@ -145,6 +152,8 @@ function calc_total(){//得点表示
                         kingaku+=800;
                     }else if(document.myform.elements[i].value=="v_tiki1"){
                         kingaku+=600;
+                    }else if(document.myform.elements[i].value=="v_tiki_re"){
+                        kingaku+=200;
                     }else if(document.myform.elements[i].value=="v_rock"){
                         kingaku+=500;
                     }else if(document.myform.elements[i].value=="v_big"){
@@ -172,6 +181,7 @@ function onButtonClick() {//状態表示
           tkof  = document.myform. tkof.checked;
           tiki2 = document.myform.tiki2.checked;
           tiki1 = document.myform.tiki1.checked;
+          tiki_re = document.myform.tiki_re.checked;
           rock  = document.myform. rock.checked;
           big   = document.myform.  big.checked;
           atkof = document.myform.atkof.checked;
@@ -179,6 +189,7 @@ function onButtonClick() {//状態表示
           land  = document.myform. land.checked;
 
           fale_tiki  = document.myform.fale_tiki .checked;
+          fale_tiki_re  = document.myform.fale_tiki_re .checked;
           fale_rock  = document.myform.fale_rock .checked;
           fale_big   = document.myform.fale_big  .checked;
           fale_atkof = document.myform.fale_atkof.checked;
@@ -199,14 +210,29 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 1){
-              if((tiki2==true)||(tiki1==true)||(fale_tiki==true)){
+              if((tiki2==true)||(tiki1==true)){//||(fale_tiki==true)){
                 var time_tiki=document.getElementById("counter").innerHTML;
                 target.innerHTML =  "チキラ完了<br/>";
                 document.getElementById("op_tiki").innerHTML ="チキラ完了時間は"+time_tiki + "s<br/>";
                 Status=2;
+              }else if((fale_tiki==true)){
+                document.getElementById("tiki_re" ).disabled =true;   // ボタンの無効化
+                document.getElementById("fale_tiki_re" ).disabled =true;   // ボタンの無効化
+                var time_tiki=document.getElementById("counter").innerHTML;
+                target.innerHTML =  "チキラ完了<br/>";
+                document.getElementById("op_tiki").innerHTML ="チキラ完了時間は"+time_tiki + "s<br/>";
+                Status=3;
               }
           }
           if(Status == 2){
+              if((tiki_re==true)){//||(fale_tiki_re==true)){
+                var time_tiki_re=document.getElementById("counter").innerHTML;
+                target.innerHTML = "ちきらおかわり完了。<br/>";
+                document.getElementById("op_tiki_re").innerHTML = "おかわり完了時間は"+time_tiki_re + "s<br/>";
+                Status=3;
+              }
+          }
+          if(Status == 3){
               if((rock==true)||(fale_rock==true)){
              var time_rock=document.getElementById("counter").innerHTML;
             target.innerHTML = "ロッキングウィング完了。<br/>";
@@ -344,6 +370,7 @@ function design(){
     <font size="5"><p id="comment">指示</p></font>
 <div id="op_tkof" ></div>
 <div id="op_tiki" ></div>
+<div id="op_tiki_re" ></div>
 <div id="op_rock" ></div>
 <div id="op_big"  ></div>
 <div id="op_atkof"></div>
