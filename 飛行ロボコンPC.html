@@ -3,11 +3,11 @@
 <!-- <html><head><meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
 <html><head><meta name="viewport" content="width=1000" >
 
-<title>飛行ロボコンタイマー</title>
+<title>飛行ロボコンタイマーPC</title>
 </head>
 
 <body>
-<h3>飛行ロボコンタイマー　　　　<input type="button" id="PC" size="10" value="iphone" onclick="location.href='https://yamakentucky.github.io/time/飛行ロボコンiphone.html'"></h3>
+<h3>飛行ロボコンタイマーPC　　　　<input type="button" id="PC" size="10" value="iphone" onclick="location.href='https://yamakentucky.github.io/time/飛行ロボコンiphone.html'"></h3>
 <hr>
 <!-- ////////////////////////////////////////////Time form/////////////////////////////////////////////////// -->
 <form name="ktimer" onsubmit="return false;">
@@ -50,8 +50,13 @@ function count_start() {//カウント開始
     s_status = setInterval('onButtonClick()',100);
     s_design = setInterval('design()',1000);
     s_music = setInterval('music()',1000);
-    
-    
+    document.getElementById("tiki2" ).disabled =true;  document.getElementById("tiki1" ).disabled =true;  document.getElementById("fale_tiki" ).disabled =true; 
+    document.getElementById("tiki_re" ).disabled =true;  document.getElementById("fale_tiki_re" ).disabled =true; 
+    document.getElementById("rock" ).disabled =true;  document.getElementById("fale_rock" ).disabled =true; 
+    document.getElementById("big" ).disabled =true;  document.getElementById("fale_big" ).disabled =true; 
+    document.getElementById("atkof" ).disabled =true;  document.getElementById("fale_atkof" ).disabled =true; 
+    document.getElementById("eight" ).disabled =true;  document.getElementById("fale_eight" ).disabled =true; 
+    document.getElementById("land" ).disabled =true;  document.getElementById("fale_land" ).disabled =true;     
 }
 function count_stop() {//カウント停止
 	clearInterval(timerID );
@@ -205,77 +210,115 @@ function onButtonClick() {//状態表示
             target.innerHTML = "クリアされました<br/>";
           }
           if(Status == -1){
-              if(tkof==true){
+            if(tkof==true){
                 var time_tkof=document.getElementById("counter").innerHTML;
                 target.innerHTML = "離陸完了<br/>";
                 document.getElementById("op_tkof").innerHTML= "離陸時間は"+time_tkof + "s<br/>";
                 Status=1;  
-              }
+            }
           }
           if(Status == 1){
-              if((tiki2==true)||(tiki1==true)){//||(fale_tiki==true)){
+            document.getElementById("tiki2" ).disabled =false;  document.getElementById("tiki1" ).disabled =false;  document.getElementById("fale_tiki" ).disabled =false; 
+            if((tiki2==true)||(tiki1==true)){//||(fale_tiki==true)){
                 var time_tiki=document.getElementById("counter").innerHTML;
                 target.innerHTML =  "チキラ完了<br/>";
                 document.getElementById("op_tiki").innerHTML ="チキラ完了時間は"+time_tiki + "s<br/>";
                 Status=2;
-              }else if((fale_tiki==true)){
+            }else if((fale_tiki==true)){
                 document.getElementById("tiki_re" ).disabled =true;   // ボタンの無効化
                 document.getElementById("fale_tiki_re" ).disabled =true;   // ボタンの無効化
                 var time_tiki=document.getElementById("counter").innerHTML;
-                target.innerHTML =  "チキラ完了<br/>";
-                document.getElementById("op_tiki").innerHTML ="チキラ完了時間は"+time_tiki + "s<br/>";
+                target.innerHTML =  "チキラ失敗<br/>";
+                document.getElementById("op_tiki").innerHTML ="チキラ終了時間は"+time_tiki + "s<br/>";
                 Status=3;
-              }
+            }
           }
           if(Status == 2){
-              if((tiki_re==true)){//||(fale_tiki_re==true)){
+            document.getElementById("tiki_re" ).disabled =false;  document.getElementById("fale_tiki_re" ).disabled =false; 
+            if((tiki_re==true)){//||(fale_tiki_re==true)){
                 var time_tiki_re=document.getElementById("counter").innerHTML;
                 target.innerHTML = "ちきらおかわり完了。<br/>";
                 document.getElementById("op_tiki_re").innerHTML = "おかわり完了時間は"+time_tiki_re + "s<br/>";
                 Status=3;
-              }
+            }else if((fale_tiki_re==true)){
+                var time_tiki_re=document.getElementById("counter").innerHTML;
+                target.innerHTML = "ちきらおかわり失敗<br/>";
+                document.getElementById("op_tiki_re").innerHTML = "おかわり終了時間は"+time_tiki_re + "s<br/>";
+                Status=3; 
+            }
           }
           if(Status == 3){
-              if((rock==true)||(fale_rock==true)){
-             var time_rock=document.getElementById("counter").innerHTML;
-            target.innerHTML = "ロッキングウィング完了。<br/>";
-            document.getElementById("op_rock").innerHTML = "ロッキングウィング完了時間は"+time_rock + "s<br/>";
-            Status=4;
-              }
+            document.getElementById("rock" ).disabled =false;  document.getElementById("fale_rock" ).disabled =false; 
+            if(rock==true){
+                var time_rock=document.getElementById("counter").innerHTML;
+                target.innerHTML = "ロッキングウィング完了。<br/>";
+                document.getElementById("op_rock").innerHTML = "ロッキングウィング完了時間は"+time_rock + "s<br/>";
+                Status=4;
+            }else if(fale_rock==true){
+                var time_rock=document.getElementById("counter").innerHTML;
+                target.innerHTML = "ロッキングウィング失敗。<br/>";
+                document.getElementById("op_rock").innerHTML = "ロッキングウィング終了時間は"+time_rock + "s<br/>";
+                Status=4;
+            }
           }
           if(Status == 4){
-              if((big==true)||(fale_big==true)){
-              var time_big=document.getElementById("counter").innerHTML;
-            target.innerHTML = "高所物資運搬完了。<br/>";
-            document.getElementById("op_big").innerHTML = "大型物資運搬完了時間は"+time_big + "s<br/>";
-            Status=5;
-              }
+            document.getElementById("big" ).disabled =false;  document.getElementById("fale_big" ).disabled =false; 
+            if(big==true){
+                var time_big=document.getElementById("counter").innerHTML;
+                target.innerHTML = "高所物資運搬完了。<br/>";
+                document.getElementById("op_big").innerHTML = "大型物資運搬完了時間は"+time_big + "s<br/>";
+                Status=5;
+            }else if(fale_big==true){
+                var time_big=document.getElementById("counter").innerHTML;
+                target.innerHTML = "高所物資運搬失敗。<br/>";
+                document.getElementById("op_big").innerHTML = "大型物資運搬終了時間は"+time_big + "s<br/>";
+                Status=5; 
+            }
           }
           if(Status == 5){
-              if((atkof==true)||(fale_atkof==true)){
-               var time_atkof=document.getElementById("counter").innerHTML;
-            target.innerHTML = "自動離陸完了。<br/>";
-            document.getElementById("op_atkof").innerHTML = "自動離陸完了時間は"+time_atkof + "s<br/>";
-            Status=6;
-              }
+            document.getElementById("atkof" ).disabled =false;  document.getElementById("fale_atkof" ).disabled =false; 
+            if(atkof==true){
+                var time_atkof=document.getElementById("counter").innerHTML;
+                target.innerHTML = "自動離陸完了。<br/>";
+                document.getElementById("op_atkof").innerHTML = "自動離陸完了時間は"+time_atkof + "s<br/>";
+                Status=6;
+            }else if(fale_atkof==true){
+                var time_atkof=document.getElementById("counter").innerHTML;
+                target.innerHTML = "自動離陸失敗。<br/>";
+                document.getElementById("op_atkof").innerHTML = "自動離陸終了時間は"+time_atkof + "s<br/>";
+                Status=6;
+            }
           }
           if(Status == 6){
-              if((eight==true)||(fale_eight==true)){
-           var time_eight=document.getElementById("counter").innerHTML;
-            target.innerHTML = "8の字完了。<br/>";
-            document.getElementById("op_eight").innerHTML = "8の字完了時間は"+time_eight + "s<br/>";
-            Status=7;
-              }
+            document.getElementById("eight" ).disabled =false;  document.getElementById("fale_eight" ).disabled =false; 
+            if(eight==true){
+                var time_eight=document.getElementById("counter").innerHTML;
+                target.innerHTML = "8の字完了。<br/>";
+                document.getElementById("op_eight").innerHTML = "8の字完了時間は"+time_eight + "s<br/>";
+                Status=7;
+            }else if(fale_eight==true){
+                var time_eight=document.getElementById("counter").innerHTML;
+                target.innerHTML = "8の字失敗。<br/>";
+                document.getElementById("op_eight").innerHTML = "8の字終了時間は"+time_eight + "s<br/>";
+                Status=7;
+            }
           }
           if(Status == 7){
-              if((land==true)||(fale_land==true)){
-          var time_land=document.getElementById("counter").innerHTML;
-            target.innerHTML = "帰還完了。<br/>";
-            document.getElementById("op_home").innerHTML = "帰還完了時間は"+time_land + "s<br/>";
-            count_stop()
-            Status=8;
-              }
-          }
+            document.getElementById("land" ).disabled =false; document.getElementById("fale_land" ).disabled =false; 
+            if(land==true){
+                var time_land=document.getElementById("counter").innerHTML;
+                target.innerHTML = "帰還完了。<br/>";
+                document.getElementById("op_home").innerHTML = "帰還完了時間は"+time_land + "s<br/>";
+                count_stop()
+                Status=8;
+            }else if(fale_land==true){
+                var time_land=document.getElementById("counter").innerHTML;
+                target.innerHTML = "未帰還。<br/>";
+                document.getElementById("op_home").innerHTML = "帰還終了時間は"+time_land + "s<br/>";
+                count_stop()
+                Status=8; 
+            }
+        }
   }
         
   function clickBtn(){//状態クリア
@@ -391,30 +434,3 @@ function music(){
 <div id="op_home" ></div>
 
 
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-	<meta charset="utf-8" />
-  <script type="text/javascript">
-    var audioElem;
-
-    function PlaySound() {
-      audioElem = new Audio();
-      audioElem.src = "mymusic.mp3";
-      audioElem.play();
-    }
-    function StopSound(){
-      audioElem.pause();
-    }
-  </script>
-</head>
-<body>
-  <a href="javascript:void(0);" onclick="PlaySound();">再生</a><br/>
-  <a href="javascript:void(0);" onclick="StopSound();">停止</a><br />
-</body>
-</html>
-
-</body></html> -->
