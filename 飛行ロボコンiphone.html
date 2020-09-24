@@ -49,8 +49,14 @@ function count_start() {//カウント開始
     calcID = setInterval('calc_total()',1000);
     s_status = setInterval('onButtonClick()',100);
     s_design = setInterval('design()',1000);
-    
-    
+    document.getElementById("tiki2" ).disabled =true;  document.getElementById("tiki1" ).disabled =true;  document.getElementById("fale_tiki" ).disabled =true; 
+    document.getElementById("tiki_re" ).disabled =true;  document.getElementById("fale_tiki_re" ).disabled =true; 
+    document.getElementById("rock" ).disabled =true;  document.getElementById("fale_rock" ).disabled =true; 
+    document.getElementById("big" ).disabled =true;  document.getElementById("fale_big" ).disabled =true; 
+    document.getElementById("atkof" ).disabled =true;  document.getElementById("fale_atkof" ).disabled =true; 
+    document.getElementById("eight" ).disabled =true;  document.getElementById("fale_eight" ).disabled =true; 
+    document.getElementById("land" ).disabled =true;  document.getElementById("fale_land" ).disabled =true; 
+
 }
 function count_stop() {//カウント停止
 	clearInterval(timerID );
@@ -207,9 +213,10 @@ function onButtonClick() {//状態表示
                 target.innerHTML = "離陸完了<br/>";
                 document.getElementById("op_tkof").innerHTML= "離陸時間は"+time_tkof + "s<br/>";
                 Status=1;  
-              }
+                }
           }
           if(Status == 1){
+            document.getElementById("tiki2" ).disabled =false;  document.getElementById("tiki1" ).disabled =false;  document.getElementById("fale_tiki" ).disabled =false; 
               if((tiki2==true)||(tiki1==true)){//||(fale_tiki==true)){
                 var time_tiki=document.getElementById("counter").innerHTML;
                 target.innerHTML =  "チキラ完了<br/>";
@@ -225,6 +232,7 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 2){
+            document.getElementById("tiki_re" ).disabled =false;  document.getElementById("fale_tiki_re" ).disabled =false; 
               if((tiki_re==true)){//||(fale_tiki_re==true)){
                 var time_tiki_re=document.getElementById("counter").innerHTML;
                 target.innerHTML = "ちきらおかわり完了。<br/>";
@@ -233,6 +241,7 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 3){
+            document.getElementById("rock" ).disabled =false;  document.getElementById("fale_rock" ).disabled =false; 
               if((rock==true)||(fale_rock==true)){
              var time_rock=document.getElementById("counter").innerHTML;
             target.innerHTML = "ロッキングウィング完了。<br/>";
@@ -241,6 +250,7 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 4){
+            document.getElementById("big" ).disabled =false;  document.getElementById("fale_big" ).disabled =false; 
               if((big==true)||(fale_big==true)){
               var time_big=document.getElementById("counter").innerHTML;
             target.innerHTML = "高所物資運搬完了。<br/>";
@@ -249,6 +259,7 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 5){
+            document.getElementById("atkof" ).disabled =false;  document.getElementById("fale_atkof" ).disabled =false; 
               if((atkof==true)||(fale_atkof==true)){
                var time_atkof=document.getElementById("counter").innerHTML;
             target.innerHTML = "自動離陸完了。<br/>";
@@ -257,6 +268,7 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 6){
+            document.getElementById("eight" ).disabled =false;  document.getElementById("fale_eight" ).disabled =false; 
               if((eight==true)||(fale_eight==true)){
            var time_eight=document.getElementById("counter").innerHTML;
             target.innerHTML = "8の字完了。<br/>";
@@ -265,6 +277,7 @@ function onButtonClick() {//状態表示
               }
           }
           if(Status == 7){
+            document.getElementById("land" ).disabled =false; 
               if((land==true)||(fale_land==true)){
           var time_land=document.getElementById("counter").innerHTML;
             target.innerHTML = "帰還完了。<br/>";
