@@ -238,6 +238,11 @@ function onButtonClick() {//状態表示
                 target.innerHTML = "ちきらおかわり完了。<br/>";
                 document.getElementById("op_tiki_re").innerHTML = "おかわり完了時間は"+time_tiki_re + "s<br/>";
                 Status=3;
+              }else if((fale_tiki_re==true)){
+                var time_tiki_re=document.getElementById("counter").innerHTML;
+                target.innerHTML = "ちきらおかわり完了。<br/>";
+                document.getElementById("op_tiki_re").innerHTML = "おかわり完了時間は"+time_tiki_re + "s<br/>";
+                Status=3; 
               }
           }
           if(Status == 3){
