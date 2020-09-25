@@ -18,6 +18,10 @@
 <!-- blue line --><hr size="10" color="#0000ff" noshade>  
 
 
+<form name="order" onsubmit="return false;">
+    <font size="5"><p id="comment">指示</p></font>
+</form>
+
 
 <script type="text/javascript">//初期設定
 ////////////////////////////////////////////Time///////////////////////////////////////////////////
@@ -82,6 +86,7 @@ function countdown() {//カウント表示
 <form name="myform">
     <table align = "left" border=1 cellpadding=4>
         <tbody>
+            
             <tr>
                 <td colspan="2"><input type="checkbox" value="v_tkof" id="tkof" onClick="calc_total()">
                     <label for="tkof">離陸(300)</label></td>
@@ -180,6 +185,8 @@ function calc_total(){//得点表示
             }
     }
     document.myform.goukei.value = kingaku + time_point + "点";  
+    var msg_point=kingaku + time_point + "点でした";document.getElementById("point").innerHTML= msg_point;
+
 }
 
 function onButtonClick() {//状態表示
@@ -410,8 +417,7 @@ function design(){
         }
 }
 </script>
-<form name="order" onsubmit="return false;">
-    <font size="5"><p id="comment">指示</p></font>
+<div id="point" ></div>
 <div id="op_tkof" ></div>
 <div id="op_tiki" ></div>
 <div id="op_tiki_re" ></div>
