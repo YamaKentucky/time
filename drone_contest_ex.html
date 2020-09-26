@@ -263,7 +263,7 @@ function onButtonClick() {//状態表示
             if((tiki2_re==true)||(tiki1_re==true)){//||(fale_tiki==true)){
                 var time_tiki_re=document.getElementById("counter").innerHTML;
                 target.innerHTML =  "再チキ2完了<br/>";
-                document.getElementById("op_tiki_re").innerHTML ="再チキ2完了時間は"+time_tiki + "s<br/>";
+                document.getElementById("op_tiki_re").innerHTML ="再チキ2完了時間は"+time_tiki_re + "s<br/>";
                 Status=4;
             }else if((fale_tiki_re==true)){
                 document.getElementById("tiki_re" ).disabled =true;   // ボタンの無効化
@@ -396,66 +396,67 @@ function onButtonClick() {//状態表示
 
 <script type="text/javascript">//初期設定
 function order_comment(){//指示表示
-if(Status==-1){//離陸未完了
-    var msg_order ="落ち着いて操縦してください";document.getElementById("comment").innerHTML= msg_order;
-            if(count < 170&&count > 130){
-                var msg_order ="離陸まだ～？";document.getElementById("comment").innerHTML= msg_order;
-            }else if(ccount < 130&&count > 0){
-                var msg_order ="もう終わりや";document.getElementById("comment").innerHTML= msg_order;
-            }
-}else if(Status==1){//チキラ未完了
-        if (count < 180&&count > 170) {
-        var msg_order ="離陸早くね？その調子でチキラ";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 170&&count > 140){
-        var msg_order ="正解の箱探索，調整中？";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 140&&count >125){
-        var msg_order ="正解の箱見つかって入れる作業中やんな";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 125&&count >10){
-        var msg_order ="チキラをエリアに落として次！！";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 10&&count > 0){
-        var msg_order ="もう終わりや，あーあ";document.getElementById("comment").innerHTML= msg_order;
-        }
-}else if(Status==2){//チキラ完了,ロッキングウィング完未完了
-    if (count < 180&&count > 115) {
-        var msg_order ="ロッキングウィングはさらっといこ";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 115&&count > 0){
-        var msg_order ="時間かかりすぎやわ，ZAQ運ぼか";document.getElementById("comment").innerHTML= msg_order;
-        }
-}else if(Status==4){//ロッキングウィング完了,ZAQ未完
-        if (count < 180&&count > 100) {
-        var msg_order ="ZAQ取り付け完了してる？";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 100&&count > 60){
-        var msg_order ="物資運んでるよね？";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 60&&count > 30){
-        var msg_order ="ちょっと急ごう";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 0&&count > -10){
-        var msg_order ="ZAQあきらめて自動離陸と八の字";document.getElementById("comment").innerHTML= msg_order;
-        }
-}else if(Status==5){//ZAQ完了,自動離陸未完了
-        if (count <180&&count > 50) {
-        var msg_order ="自動離陸やってる？";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 50&&count > 0){
-        var msg_order ="八の字時間ないかも";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 0&&count > -20){
-        var msg_order ="自動離陸後即帰還，そっちの方が点数高い";document.getElementById("comment").innerHTML= msg_order;
-        }    
-}else if(Status==6){//自動離陸完了，八の字未完了
-        if (count < 180&&count > 50) {
-        var msg_order ="八の字頑張って";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 50&&count > 0){
-        var msg_order ="八の字いそいで";document.getElementById("comment").innerHTML= msg_order;
-        }else if(count < 0&&count > -20){
-        var msg_order ="自動離陸後即帰還，そっちの方が点数高い";document.getElementById("comment").innerHTML= msg_order;
-        }    
-}else if(Status==7){//八の字完了
-        var msg_order ="後は帰還するだけ";document.getElementById("comment").innerHTML= msg_order;
-        }  
-else if(Status==8){//帰還完了
-        var msg_order ="お疲れ様．得点は"+document.myform.goukei.value +"でした";document.getElementById("comment").innerHTML= msg_order;
-        document.getElementById("put").innerHTML= time_tkof+"aa";//+"a"+time_tiki;
-        // var timelog=time_tkof1+"a"+time_tiki;
-        // document.getElementById("put").innerHTML =timelog;
-        }    
+    var msg_order ="緊急ミッション．全てクリアしてください．こちらからは以上です";document.getElementById("comment").innerHTML= msg_order;
+// if(Status==-1){//離陸未完了
+//     var msg_order ="落ち着いて操縦してください";document.getElementById("comment").innerHTML= msg_order;
+//             if(count < 170&&count > 130){
+//                 var msg_order ="離陸まだ～？";document.getElementById("comment").innerHTML= msg_order;
+//             }else if(ccount < 130&&count > 0){
+//                 var msg_order ="もう終わりや";document.getElementById("comment").innerHTML= msg_order;
+//             }
+// }else if(Status==1){//チキラ未完了
+//         if (count < 180&&count > 170) {
+//         var msg_order ="離陸早くね？その調子でチキラ";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 170&&count > 140){
+//         var msg_order ="正解の箱探索，調整中？";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 140&&count >125){
+//         var msg_order ="正解の箱見つかって入れる作業中やんな";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 125&&count >10){
+//         var msg_order ="チキラをエリアに落として次！！";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 10&&count > 0){
+//         var msg_order ="もう終わりや，あーあ";document.getElementById("comment").innerHTML= msg_order;
+//         }
+// }else if(Status==2){//チキラ完了,ロッキングウィング完未完了
+//     if (count < 180&&count > 115) {
+//         var msg_order ="ロッキングウィングはさらっといこ";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 115&&count > 0){
+//         var msg_order ="時間かかりすぎやわ，ZAQ運ぼか";document.getElementById("comment").innerHTML= msg_order;
+//         }
+// }else if(Status==4){//ロッキングウィング完了,ZAQ未完
+//         if (count < 180&&count > 100) {
+//         var msg_order ="ZAQ取り付け完了してる？";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 100&&count > 60){
+//         var msg_order ="物資運んでるよね？";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 60&&count > 30){
+//         var msg_order ="ちょっと急ごう";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 0&&count > -10){
+//         var msg_order ="ZAQあきらめて自動離陸と八の字";document.getElementById("comment").innerHTML= msg_order;
+//         }
+// }else if(Status==5){//ZAQ完了,自動離陸未完了
+//         if (count <180&&count > 50) {
+//         var msg_order ="自動離陸やってる？";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 50&&count > 0){
+//         var msg_order ="八の字時間ないかも";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 0&&count > -20){
+//         var msg_order ="自動離陸後即帰還，そっちの方が点数高い";document.getElementById("comment").innerHTML= msg_order;
+//         }    
+// }else if(Status==6){//自動離陸完了，八の字未完了
+//         if (count < 180&&count > 50) {
+//         var msg_order ="八の字頑張って";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 50&&count > 0){
+//         var msg_order ="八の字いそいで";document.getElementById("comment").innerHTML= msg_order;
+//         }else if(count < 0&&count > -20){
+//         var msg_order ="自動離陸後即帰還，そっちの方が点数高い";document.getElementById("comment").innerHTML= msg_order;
+//         }    
+// }else if(Status==7){//八の字完了
+//         var msg_order ="後は帰還するだけ";document.getElementById("comment").innerHTML= msg_order;
+//         }  
+// else if(Status==8){//帰還完了
+//         var msg_order ="お疲れ様．得点は"+document.myform.goukei.value +"でした";document.getElementById("comment").innerHTML= msg_order;
+//         document.getElementById("put").innerHTML= time_tkof+"aa";//+"a"+time_tiki;
+//         // var timelog=time_tkof1+"a"+time_tiki;
+//         // document.getElementById("put").innerHTML =timelog;
+//         }    
 }//
 function design(){
         if (count == 10) {
@@ -469,9 +470,6 @@ function design(){
         }
 }
 </script>
-<h3>Fliegen20 extra　
-    <input type="button" id="PC" size="10" value="iphone" onclick="location.href='https://yamakentucky.github.io/time/drone_contest_iphone.html'">
-    <input type="button" id="PC" size="10" value="PC"　  onclick="location.href='https://yamakentucky.github.io/time/drone_contest_PC.html'"></h3>    
 <div id="point" ></div>
 <div id="op_tkof" ></div>
 <div id="op_tiki" ></div>
@@ -482,5 +480,9 @@ function design(){
 <div id="op_atkof"></div>
 <div id="op_eight"></div>
 <div id="op_home" ></div>
+<h3>Fliegen20 extra　
+    <input type="button" id="PC" size="10" value="iphone" onclick="location.href='https://yamakentucky.github.io/time/drone_contest_iphone.html'">
+    <input type="button" id="PC" size="10" value="PC"　  onclick="location.href='https://yamakentucky.github.io/time/drone_contest_PC.html'"></h3>    
+
 
 </body></html>
